@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+html {
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: max(300px, 20vw) 1fr;
+}
+
+/* HEADER */
+
+.header {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: navy;
+  font-size: 1.5rem;
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.navbar-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.navbar-button:hover {
+  background-color: rgba(64, 64, 128);
+}
+
+.navbar-button img {
+  width: 2rem;
+  filter: invert(1);
+}
+
+.header .title {
+  justify-self: center;
+  color: white;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color:lightsteelblue;
+  padding: 30px 20px;
+}
+
+.sidebar .title {
+  padding-left: 12px;
+  font-size: 1.8rem;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  padding: 6px;
+  padding-left: 12px;
+  border-radius: 6px;
+}
+
+.project:hover {
+  background-color: rgb(160, 180, 207);
+}
+
+.project.selected {
+  background-color: rgb(133, 156, 185);
+}
+
+.project-title {
+  font-size: 1.2rem;
+}
+
+.project-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+}
+
+.project-button {
+  display: flex;
+  align-items: center;
+}
+
+.project-button img {
+  width: 1.5rem;
+}
+
+.project-button.rename img:hover {
+  filter: invert(1);
+}
+
+.project-button.delete img:hover,
+.project-button.cancel img:hover {
+  filter: invert(19%) sepia(96%) saturate(7384%) hue-rotate(359deg) brightness(111%) contrast(116%);
+}
+
+.project-button.confirm img:hover {
+  filter: invert(75%) sepia(63%) saturate(6849%) hue-rotate(86deg) brightness(105%) contrast(118%);
+}
+
+.project-rename-input {
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-size: 1.2rem;
+  min-width: 0;
+  padding: 3px 6px;
+  margin: 6px -3px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+/* MAIN */
+
+.main {
+  background-color: aliceblue;
+}

@@ -3,9 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>CoolToDo</title>
 </head>
 <body>
-  
+  <div class="header">
+    <ul class="navbar">
+      <li class="navbar-button">
+        <img src="assets/images/menu.svg" alt="">
+      </li>
+      <li class="navbar-button">
+        <img src="assets/images/home.svg" alt="">
+      </li>
+    </ul>
+    <a class="title" href="">
+      <h1>CoolToDo</h1>
+    </a>
+  </div>
+  <div class="sidebar">
+    <h2 class="title">Projects</h2>
+    <ul class="project-list">
+      <li class="project">
+        <h3 class="project-title">Project A</h3>
+      </li>
+      <li class="project selected">
+        <h3 class="project-title">Project B</h3>
+        <div class="project-buttons">
+          <div class="project-button rename">
+            <img src="assets/images/rename-outline.svg" alt="">
+          </div>
+          <div class="project-button delete">
+            <img src="assets/images/trash-can-outline.svg" alt="">
+          </div>
+        </div>
+      </li>
+      <li class="project selected rename">
+        <input type="text" name="" id="" value="Project C" class="project-rename-input">
+        <div class="project-buttons">
+          <div class="project-button confirm">
+            <img src="assets/images/check.svg" alt="">
+          </div>
+          <div class="project-button cancel">
+            <img src="assets/images/close.svg" alt="">
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="main">
+
+  </div>
 </body>
 </html>
