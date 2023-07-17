@@ -20,4 +20,7 @@ export default class Project {
     this.todoList.splice(index, 1);
   }
 
+  changeName(newName) {
+    this.name = newName;
+  }
 }

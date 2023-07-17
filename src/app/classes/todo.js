@@ -11,5 +11,4 @@ export default class Todo {
     this.priority = priority;
     this.isComplete = false;
   }
-
 }
