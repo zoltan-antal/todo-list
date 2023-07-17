@@ -5,5 +5,6 @@ module.exports = merge(common, {
   mode: 'production',
   output: {
     filename: 'main.[contenthash].js',
+    clean: true,
   },
 });
