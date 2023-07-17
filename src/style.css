@@ -152,7 +152,6 @@ body {
 }
 
 .add-project {
-  /* align-self: flex-end; */
   list-style: none;
 }
 
@@ -168,5 +167,129 @@ body {
 /* MAIN */
 
 .main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
   background-color: aliceblue;
+  padding: 30px 10vw;
+}
+
+.main .title {
+  font-size: 2.4rem;
+}
+
+.todo-list {
+  /* flex-grow: 1; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.todo {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  grid-template-rows: auto;
+  grid-auto-rows: auto;
+  grid-template-areas:
+    "check title infos buttons"
+    ". description . .";
+  align-items: center;
+  column-gap: 30px;
+  row-gap: 2px;
+}
+
+.todo img {
+  width: 1.5rem;
+}
+
+.todo-check {
+  grid-area: check;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.todo-check.checked img {
+  filter: invert(30%) sepia(60%) saturate(1731%) hue-rotate(90deg) brightness(96%) contrast(104%);
+}
+
+.todo-check.checked ~ .todo-title,
+.todo-check.checked ~ .todo-description {
+  text-decoration: line-through;
+}
+
+.todo-title {
+  grid-area: title;
+  font-size: 1.3rem;
+}
+
+.todo-description {
+  grid-area: description;
+  font-size: 1rem;
+}
+
+.todo-infos {
+  grid-area: infos;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.todo-info.date {
+  font-size: 0.95rem;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.todo-info.priority.high {
+  filter: invert(17%) sepia(82%) saturate(7372%) hue-rotate(358deg) brightness(120%) contrast(114%);
+}
+
+.todo-info.priority.medium {
+  filter: invert(57%) sepia(87%) saturate(952%) hue-rotate(0deg) brightness(103%) contrast(104%);
+}
+
+.todo-info.priority.low {
+  filter: invert(60%) sepia(82%) saturate(4595%) hue-rotate(190deg) brightness(99%) contrast(103%);
+}
+
+.todo-buttons {
+  grid-area: buttons;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+}
+
+.todo-button {
+  cursor: pointer;
+}
+
+.todo-button:hover {
+  filter: invert(51%) sepia(2%) saturate(0%) hue-rotate(286deg) brightness(98%) contrast(93%);
+}
+
+.todo-button.delete:hover {
+  filter: invert(17%) sepia(82%) saturate(7372%) hue-rotate(358deg) brightness(120%) contrast(114%);
+}
+
+.add-todo {
+  /* align-self: flex-end; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+}
+
+.add-todo img {
+  cursor: pointer;
+  width: 1.3rem;
+}
+
+.add-todo img:hover {
+  filter: invert(60%) sepia(82%) saturate(4595%) hue-rotate(190deg) brightness(99%) contrast(103%);
 }
