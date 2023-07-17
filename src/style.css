@@ -86,6 +86,7 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  list-style: none;
   cursor: pointer;
   padding: 6px;
   padding-left: 12px;
@@ -133,7 +134,7 @@ body {
   filter: invert(75%) sepia(63%) saturate(6849%) hue-rotate(86deg) brightness(105%) contrast(118%);
 }
 
-.project-rename-input {
+.project-title-input {
   flex-grow: 1;
   flex-shrink: 1;
   font-size: 1.2rem;
@@ -143,6 +144,20 @@ body {
   outline: none;
   border: none;
   border-radius: 5px;
+}
+
+.add-project {
+  /* align-self: flex-end; */
+  list-style: none;
+}
+
+.add-project img {
+  cursor: pointer;
+  width: 2rem;
+}
+
+.add-project img:hover {
+  filter: invert(1);
 }
 
 /* MAIN */
