@@ -93,6 +93,11 @@ body {
   border-radius: 6px;
 }
 
+.project-title {
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
 .project:hover {
   background-color: rgb(160, 180, 207);
 }
@@ -101,8 +106,8 @@ body {
   background-color: rgb(133, 156, 185);
 }
 
-.project-title {
-  font-size: 1.2rem;
+.project.selected .project-title {
+  font-weight: bold;
 }
 
 .project-buttons {
