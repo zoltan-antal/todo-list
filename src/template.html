@@ -137,5 +137,40 @@
       </li>
     </ul>
   </div>
+  <dialog class="todo-dialog">
+    <div>
+      <div class="dialog-header">
+        <h2 class="title">New task</h2>
+        <img class="close" src="assets/images/window-close.svg" alt="">
+      </div>
+      <hr>
+      <form class="dialog-body">
+        <div class="form-group">
+          <label for="todo-title">*Title:</label>
+          <input type="text" id="todo-title" required>
+        </div>
+        <div class="form-group">
+          <label for="todo-description">Description:</label>
+          <span class="textarea" id="todo-description" role="textbox" contenteditable></span>
+        </div>
+        <div class="form-group">
+          <label for="todo-date">Due date:</label>
+          <input type="date" id="todo-date">
+        </div>
+        <div class="form-group">
+          <label for="todo-priority">*Priority:</label>
+          <select name="" id="todo-priority" required>
+            <option value="low" selected>low</option>
+            <option value="medium">medium</option>
+            <option value="high">high</option>
+          </select>
+        </div>
+      </form>
+      <div class="dialog-buttons">
+        <button class="close">Close</button>
+        <button class="submit">Submit</button>
+      </div>
+    </div>
+  </dialog>
 </body>
 </html>

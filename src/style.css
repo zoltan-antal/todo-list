@@ -179,7 +179,6 @@ body {
 }
 
 .todo-list {
-  /* flex-grow: 1; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -278,7 +277,6 @@ body {
 }
 
 .add-todo {
-  /* align-self: flex-end; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -292,4 +290,114 @@ body {
 
 .add-todo img:hover {
   filter: invert(60%) sepia(82%) saturate(4595%) hue-rotate(190deg) brightness(99%) contrast(103%);
+}
+
+/* TODO DIALOG */
+
+dialog {
+  margin: 25vh auto;
+  width: min(90%, 700px);
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+dialog > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-header,
+.dialog-body,
+.dialog-buttons {
+  padding: 20px;
+}
+
+.dialog-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialog-header .title {
+  font-size: 1.6rem;
+}
+
+.dialog-header .close {
+  width: 1.5rem;
+  cursor: pointer;
+  filter: invert(39%) sepia(1%) saturate(0%) hue-rotate(134deg) brightness(103%) contrast(92%);
+}
+
+.dialog-header .close:hover {
+  filter: invert(0%) sepia(100%) saturate(7500%) hue-rotate(181deg) brightness(112%) contrast(113%);
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dialog-body .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dialog-body * {
+  font-size: 1rem;
+}
+
+.dialog-body input,
+.dialog-body select,
+.dialog-body .textarea {
+  color: rgb(48, 48, 48);
+}
+
+.dialog-body input,
+.dialog-body .textarea {
+  padding: 5px;
+  line-height: 1.2em;
+  border: 1px solid grey;
+}
+
+.dialog-body input,
+.dialog-body select {
+  height: 2em;
+}
+
+.dialog-body .textarea {
+  overflow: hidden;
+  resize: vertical;
+  min-height: 4.4em;
+}
+
+.dialog-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.dialog-buttons button {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dialog-buttons .close {
+  border: 1px solid black;
+}
+
+.dialog-buttons .close:hover {
+  background-color: gray;
+  color: white;
+}
+
+.dialog-buttons .submit {
+  background-color: navy;
+  color: white;
+  border: none;
 }
