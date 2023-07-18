@@ -13,6 +13,16 @@ export default function loadProjects() {
   clearProjects();
 
   // Add projects
+  addProjects();
+}
+
+function clearProjects() {
+  while (projectListElement.firstChild) {
+    projectListElement.removeChild(projectListElement.lastChild);
+  }
+}
+
+function addProjects() {
   for (let i = 0; i < projectHandler.projectList.length; i++) {
     const project = projectHandler.projectList[i];
     // Currently selected project needs to be selected
@@ -21,12 +31,6 @@ export default function loadProjects() {
       continue;
     }
     addProject({project});
-  }
-}
-
-function clearProjects() {
-  while (projectListElement.firstChild) {
-    projectListElement.removeChild(projectListElement.lastChild);
   }
 }
 
@@ -47,12 +51,12 @@ function addProject({project, toSelect = false}) {
 }
 
 function removeProject(projectId) {
-  projectListElement.childNodes.forEach(projectElement => {
+  for (const projectElement of projectListElement.childNodes) {
     if (Number(projectElement.getAttribute("project-id")) === projectId) {
       projectElement.remove();
       return;
     }
-  });
+  }
 }
 
 function selectProject(projectElement) {
@@ -273,11 +277,21 @@ function removeProjectEvents({projectElementSkip = undefined}) {
 }
 
 function createNewProject() {
+  // Check if any other project is currently being edited; if so, exit
+  for (const projectElement of projectListElement.childNodes) {
+    if (projectElement.classList.contains("edit")) {
+      return;
+    }
+  }
+
+  // Unselect all other projects
   unselectProjects();
 
+  // Create new project element in DOM
   const projectElement = document.createElement("li");
   projectElement.classList.add("project");
   projectElement.classList.add("selected");
+  projectElement.classList.add("edit");
   addProjectTitleInput({projectElement});
   addProjectEditButtons(projectElement);
   projectListElement.appendChild(projectElement);
