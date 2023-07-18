@@ -143,7 +143,7 @@
   <dialog class="todo-dialog">
     <div>
       <div class="dialog-header">
-        <h2 class="title">New task</h2>
+        <h2 class="title"></h2>
         <img class="close" src="assets/images/window-close.svg" alt="">
       </div>
       <hr>
@@ -151,14 +151,17 @@
         <div class="form-group">
           <label for="todo-title">*Title:</label>
           <input type="text" id="todo-title" required>
+          <p class="warning-text">This field is required</p>
         </div>
         <div class="form-group">
           <label for="todo-description">Description:</label>
           <span class="textarea" id="todo-description" role="textbox" contenteditable></span>
+          <p class="warning-text">This field is required</p>
         </div>
         <div class="form-group">
           <label for="todo-date">Due date:</label>
           <input type="date" id="todo-date">
+          <p class="warning-text">This field is required</p>
         </div>
         <div class="form-group">
           <label for="todo-priority">*Priority:</label>
@@ -167,6 +170,7 @@
             <option value="medium">medium</option>
             <option value="high">high</option>
           </select>
+          <p class="warning-text">This field is required</p>
         </div>
       </form>
       <div class="dialog-buttons">

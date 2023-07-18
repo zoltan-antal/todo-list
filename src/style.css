@@ -385,6 +385,22 @@ dialog > div {
   min-height: 4.4em;
 }
 
+.dialog-body .form-group.warning input,
+.dialog-body .form-group.warning .textarea,
+.dialog-body .form-group.warning select {
+  border-color: red;
+  outline-color: red;
+}
+
+.dialog-body .warning-text {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.dialog-body .form-group:not(.warning) > .warning-text {
+  display: none;
+}
+
 .dialog-buttons {
   display: flex;
   flex-direction: row;

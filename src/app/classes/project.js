@@ -23,4 +23,20 @@ export default class Project {
   changeName(newName) {
     this.name = newName;
   }
+
+  getTodoById(id) {
+    for (const todo of this.todoList) {
+      if (todo.id === id) {
+        return todo;
+      }
+    }
+  }
+
+  toggleTodoCompleteStatusById(id) {
+    for (const todo of this.todoList) {
+      if (todo.id === id) {
+        todo.isComplete = !todo.isComplete;
+      }
+    }
+  }
 }

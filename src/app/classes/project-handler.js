@@ -30,6 +30,10 @@ export default class ProjectHandler {
     this.currentProjectIndex = index;
   }
 
+  getCurrentProject() {
+    return this.projectList[this.currentProjectIndex];
+  }
+
   getProjectById(id) {
     for (const project of this.projectList) {
       if (project.id === id) {

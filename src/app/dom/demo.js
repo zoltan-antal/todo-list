@@ -9,7 +9,7 @@ export default function demo() {
   projectHandler.addTodo({todo: new Todo({
     title: "Task1",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    dueDate: {year: 2023, month: 8, day: 5},
+    dueDate: new Date(2023, 8, 5),
     priority: "high",
   })});
   projectHandler.addTodo({todo: new Todo({
@@ -20,7 +20,7 @@ export default function demo() {
   })});
   projectHandler.addTodo({todo: new Todo({
     title: "Task2",
-    dueDate: {year: 2020, month: 1, day: 25},
+    dueDate: new Date(2020, 1, 25),
     priority: "medium",
   }), projectId: 1});
 }

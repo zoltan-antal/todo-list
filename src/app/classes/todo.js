@@ -6,13 +6,13 @@ export default class Todo {
     Todo.nextId++;
 
     this.title = title;
-    if (description) {
-      this.description = description;
-    }
-    if (dueDate) {
-      this.dueDate = new Date(dueDate.year, dueDate.month, dueDate.day);
-    }
+    this.description = description;
+    this.dueDate = dueDate;
     this.priority = priority;
     this.isComplete = isComplete;
+  }
+
+  toggleCompleteStatus() {
+    this.isComplete = !this.isComplete;
   }
 }

@@ -3,9 +3,9 @@ import circleOutlineImage from "../../assets/images/circle-outline.svg";
 import checkCircleImage from "../../assets/images/check-circle.svg";
 import flagVariantImage from "../../assets/images/flag-variant.svg"
 import renameOutlineImage from "../../assets/images/rename-outline.svg";
-import arrowRightCircleOutlineImage from "../../assets/images/arrow-right-circle-outline.svg";
 import trashCanOutlineImage from "../../assets/images/trash-can-outline.svg";
-import { getDate, getMonth, getYear, format } from "date-fns";
+import { format } from "date-fns";
+import Todo from "../classes/todo";
 
 const todoListElement = document.querySelector(".main .todo-list");
 const todoDialog = document.querySelector(".todo-dialog");
@@ -101,14 +101,6 @@ function addTodo(todo) {
   todoEditButtonElement.appendChild(todoEditButtonImage);
   addTodoEditEvent(todoEditButtonElement);
   todoButtonsElement.appendChild(todoEditButtonElement);
-  const todoMoveButtonElement = document.createElement("div");
-  todoMoveButtonElement.classList.add("todo-button");
-  todoMoveButtonElement.classList.add("move");
-  const todoMoveButtonImage = document.createElement("img");
-  todoMoveButtonImage.src = arrowRightCircleOutlineImage;
-  todoMoveButtonElement.appendChild(todoMoveButtonImage);
-  addTodoMoveEvent(todoMoveButtonElement);
-  todoButtonsElement.appendChild(todoMoveButtonElement);
   const todoDeleteButtonElement = document.createElement("div");
   todoDeleteButtonElement.classList.add("todo-button");
   todoDeleteButtonElement.classList.add("delete");
@@ -122,28 +114,185 @@ function addTodo(todo) {
   todoListElement.appendChild(todoElement);
 }
 
+function removeTodo(todoId) {
+  for (const todoElement of todoListElement.childNodes) {
+    if (Number(todoElement.getAttribute("todo-id")) === todoId) {
+      todoElement.remove();
+      return;
+    }
+  }
+}
+
 function addTodoCheckEvent(todoCheckElement) {
-  
+  todoCheckElement.addEventListener("click", (e) => {
+    let todoElement = e.target;
+
+    // Getting the correct todo target element
+    while (!todoElement.classList.contains("todo")) {
+      todoElement = todoElement.parentElement;
+    }
+
+    // Toggle complete status on Todo object
+    projectHandler.getCurrentProject().toggleTodoCompleteStatusById(Number(todoElement.getAttribute("todo-id")));
+
+    // Toggling class on todo element
+    todoElement.classList.toggle("complete");
+  })
 }
 
 function addTodoEditEvent(todoCheckElement) {
-  
-}
+  todoCheckElement.addEventListener("click", (e) => {
+    let todoElement = e.target;
 
-function addTodoMoveEvent(todoCheckElement) {
-  
+    // Getting the correct todo target element
+    while (!todoElement.classList.contains("todo")) {
+      todoElement = todoElement.parentElement;
+    }
+
+    // Getting todo ID and todo
+    const todoId = Number(todoElement.getAttribute("todo-id"));
+    const todo = projectHandler.getCurrentProject().getTodoById(todoId);
+
+    // Showing dialog
+    resetTodoDialog();
+    todoDialog.querySelector(".title").textContent = "Edit task";
+    todoDialog.showModal();
+
+    // Pre-populating form fields with todo's properties
+    todoDialog.querySelector("#todo-title").value = todo.title;
+    todoDialog.querySelector("#todo-description").textContent = todo.description;
+    if (todo.dueDate) {
+      todoDialog.querySelector("#todo-date").value = format(todo.dueDate, "yyyy-MM-dd");
+    }
+    todoDialog.querySelector("#todo-priority").value = todo.priority;
+
+    // Adding new event listener to submit button
+    todoDialog.querySelector("button.submit").addEventListener("click", () => editTodo(todoElement));
+  })
 }
 
 function addTodoDeleteEvent(todoCheckElement) {
-  
+  todoCheckElement.addEventListener("click", (e) => {
+    let todoElement = e.target;
+
+    // Getting the correct todo target element
+    while (!todoElement.classList.contains("todo")) {
+      todoElement = todoElement.parentElement;
+    }
+
+    // Getting todo ID
+    const todoId = Number(todoElement.getAttribute("todo-id"));
+
+    // Deleting todo from the todo list
+    projectHandler.getCurrentProject().removeTodo(todoId);
+
+    // Deleting todo element from the DOM
+    removeTodo(todoId);
+
+    // Re-loading todo list
+    loadTodos();
+  })
+}
+
+function resetTodoDialog() {
+  // Resetting form
+  const todoForm = todoDialog.querySelector("form");
+  todoForm.reset();
+
+  const todoFormTextareas = todoForm.querySelectorAll(".textarea");
+  todoFormTextareas.forEach(todoFormTextArea => {
+    todoFormTextArea.textContent = "";
+  })
+
+  const todoFormGroups = todoForm.querySelectorAll(".form-group");
+  todoFormGroups.forEach(todoFormGroup => {
+    todoFormGroup.classList.remove("warning");
+  })
+
+  // Removing any event listeners from submit button
+  const todoDialogSubmitButton = todoDialog.querySelector("button.submit");
+  const todoDialogSubmitButtonClone = todoDialogSubmitButton.cloneNode(true);
+  todoDialogSubmitButton.parentNode.replaceChild(todoDialogSubmitButtonClone, todoDialogSubmitButton);
+}
+
+function createNewTodo() {
+  // Checking if all required fields are filled
+  if (!requiredFieldsFilled()) {
+    return;
+  }
+
+  // Reading values from the form
+  const title = todoDialog.querySelector("#todo-title").value;
+  const description = todoDialog.querySelector("#todo-description").textContent ? todoDialog.querySelector("#todo-description").textContent : undefined;
+  const dueDate = todoDialog.querySelector("#todo-date").value ? new Date(todoDialog.querySelector("#todo-date").value) : undefined;
+  const priority = todoDialog.querySelector("#todo-priority").value;
+
+  // Creating new Todo object and adding it to the current project
+  const todo = new Todo({title, description, dueDate, priority});
+  projectHandler.getCurrentProject().addTodo(todo);
+
+  // Closing and resetting dialog
+  todoDialog.close();
+  resetTodoDialog();
+
+  // Re-loading todo list
+  loadTodos();
+}
+
+function editTodo(todoElement) {
+  // Checking if all required fields are filled
+  if (!requiredFieldsFilled()) {
+    return;
+  }
+
+  // Getting todo ID and todo
+  const todoId = Number(todoElement.getAttribute("todo-id"));
+  const todo = projectHandler.getCurrentProject().getTodoById(todoId);
+
+  // Reading values from the form
+  const title = todoDialog.querySelector("#todo-title").value;
+  const description = todoDialog.querySelector("#todo-description").textContent ? todoDialog.querySelector("#todo-description").textContent : undefined;
+  const dueDate = todoDialog.querySelector("#todo-date").value ? new Date(todoDialog.querySelector("#todo-date").value) : undefined;
+  const priority = todoDialog.querySelector("#todo-priority").value;
+
+  // Updating Todo object
+  todo.title = title;
+  todo.description = description;
+  todo.dueDate = dueDate;
+  todo.priority = priority;
+
+  // Closing and resetting dialog
+  todoDialog.close();
+  resetTodoDialog();
+
+  // Re-loading todo list
+  loadTodos();
+}
+
+function requiredFieldsFilled() {
+  const requiredElements = todoDialog.querySelectorAll(":required");
+  let allFilled = true;
+
+  requiredElements.forEach(element => {
+    if (!element.value) {
+      allFilled = false;
+      element.parentNode.classList.add("warning");
+    }
+  })
+
+  return allFilled;
 }
 
 document.querySelectorAll("dialog .close").forEach(button => {
   button.addEventListener('click', () => {
     todoDialog.close();
+    resetTodoDialog();
   })
 })
 
 addTodoButton.addEventListener("click", () => {
+  resetTodoDialog();
+  todoDialog.querySelector(".title").textContent = "New task";
+  todoDialog.querySelector("button.submit").addEventListener("click", createNewTodo);
   todoDialog.showModal();
 });
