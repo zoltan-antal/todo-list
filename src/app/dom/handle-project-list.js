@@ -260,7 +260,7 @@ function addProjectConfirmEvent(projectButtonElement) {
       } else {
         const newProject = new Project(projectTitle);
         projectHandler.addProject(newProject);
-        projectHandler.changeCurrentProject(projectHandler.projectList.length - 1);
+        projectHandler.changeCurrentProject(newProject.id);
         addProject({project: newProject, toSelect: true});
       }
     }
