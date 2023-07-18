@@ -16,126 +16,128 @@
       <h1>CoolToDo</h1>
     </a>
   </div>
-  <div class="sidebar">
-    <h2 class="title">Projects</h2>
-    <ul class="project-list">
-      <li class="project">
-        <h3 class="project-title">Project A</h3>
-      </li>
-      <li class="project selected">
-        <h3 class="project-title">Project B</h3>
-        <div class="project-buttons">
-          <div class="project-button rename">
-            <img src="assets/images/rename-outline.svg" alt="">
+  <div class="body">
+    <div class="sidebar">
+      <h2 class="title">Projects</h2>
+      <ul class="project-list">
+        <li class="project">
+          <h3 class="project-title">Project A</h3>
+        </li>
+        <li class="project selected">
+          <h3 class="project-title">Project B</h3>
+          <div class="project-buttons">
+            <div class="project-button rename">
+              <img src="assets/images/rename-outline.svg" alt="">
+            </div>
+            <div class="project-button delete">
+              <img src="assets/images/trash-can-outline.svg" alt="">
+            </div>
           </div>
-          <div class="project-button delete">
-            <img src="assets/images/trash-can-outline.svg" alt="">
+        </li>
+        <li class="project selected edit">
+          <input type="text" name="" value="Project C" class="project-title-input">
+          <div class="project-buttons">
+            <div class="project-button confirm">
+              <img src="assets/images/check.svg" alt="">
+            </div>
+            <div class="project-button cancel">
+              <img src="assets/images/close.svg" alt="">
+            </div>
           </div>
-        </div>
-      </li>
-      <li class="project selected edit">
-        <input type="text" name="" value="Project C" class="project-title-input">
-        <div class="project-buttons">
-          <div class="project-button confirm">
-            <img src="assets/images/check.svg" alt="">
-          </div>
-          <div class="project-button cancel">
-            <img src="assets/images/close.svg" alt="">
-          </div>
-        </div>
-      </li>
-    </ul>
-    <div class="add-project">
-      <img src="assets/images/plus.svg" alt="">
+        </li>
+      </ul>
+      <div class="add-project">
+        <img src="assets/images/plus.svg" alt="">
+      </div>
     </div>
-  </div>
-  <div class="main">
-    <h2 class="title">Project B</h2>
-    <ul class="todo-list">
-      <li class="todo">
-        <div class="todo-check">
-          <img class="unchecked" src="assets/images/circle-outline.svg" alt="">
-          <img class="checked" src="assets/images/check-circle.svg" alt="">
-        </div>
-        <h3 class="todo-title">Task1</h3>
-        <p class="todo-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <div class="todo-infos">
-          <div class="todo-info date">
-            <time datetime="2023-09-05">2023-09-05</time>
+    <div class="main">
+      <h2 class="title">Project B</h2>
+      <ul class="todo-list">
+        <li class="todo">
+          <div class="todo-check">
+            <img class="unchecked" src="assets/images/circle-outline.svg" alt="">
+            <img class="checked" src="assets/images/check-circle.svg" alt="">
           </div>
-          <div class="todo-info priority high">
-            <img src="assets/images/flag-variant.svg" alt="">
+          <h3 class="todo-title">Task1</h3>
+          <p class="todo-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <div class="todo-infos">
+            <div class="todo-info date">
+              <time datetime="2023-09-05">2023-09-05</time>
+            </div>
+            <div class="todo-info priority high">
+              <img src="assets/images/flag-variant.svg" alt="">
+            </div>
           </div>
-        </div>
-        <div class="todo-buttons">
-          <div class="todo-button edit">
-            <img src="assets/images/rename-outline.svg" alt="">
+          <div class="todo-buttons">
+            <div class="todo-button edit">
+              <img src="assets/images/rename-outline.svg" alt="">
+            </div>
+            <div class="todo-button move">
+              <img src="assets/images/arrow-right-circle-outline.svg" alt="">
+            </div>
+            <div class="todo-button delete">
+              <img src="assets/images/trash-can-outline.svg" alt="">
+            </div>
           </div>
-          <div class="todo-button move">
-            <img src="assets/images/arrow-right-circle-outline.svg" alt="">
+        </li>
+        <li class="todo">
+          <div class="todo-check">
+            <img class="unchecked" src="assets/images/circle-outline.svg" alt="">
+            <img class="checked" src="assets/images/check-circle.svg" alt="">
           </div>
-          <div class="todo-button delete">
-            <img src="assets/images/trash-can-outline.svg" alt="">
+          <h3 class="todo-title">Task2</h3>
+          <div class="todo-infos">
+            <div class="todo-info date">
+              <time datetime="2020-02-25">2020-02-25</time>
+            </div>
+            <div class="todo-info priority medium">
+              <img src="assets/images/flag-variant.svg" alt="">
+            </div>
           </div>
-        </div>
+          <div class="todo-buttons">
+            <div class="todo-button edit">
+              <img src="assets/images/rename-outline.svg" alt="">
+            </div>
+            <div class="todo-button move">
+              <img src="assets/images/arrow-right-circle-outline.svg" alt="">
+            </div>
+            <div class="todo-button delete">
+              <img src="assets/images/trash-can-outline.svg" alt="">
+            </div>
+          </div>
+        </li>
+        <li class="todo complete">
+          <div class="todo-check">
+            <img class="unchecked" src="assets/images/circle-outline.svg" alt="">
+            <img class="checked" src="assets/images/check-circle.svg" alt="">
+          </div>
+          <h3 class="todo-title">Task3</h3>
+          <p class="todo-description">Something something</p>
+          <div class="todo-infos">
+            <div class="todo-info date">
+              <time datetime="">no date set</time>
+            </div>
+            <div class="todo-info priority low">
+              <img src="assets/images/flag-variant.svg" alt="">
+            </div>
+          </div>
+          <div class="todo-buttons">
+            <div class="todo-button edit">
+              <img src="assets/images/rename-outline.svg" alt="">
+            </div>
+            <div class="todo-button move">
+              <img src="assets/images/arrow-right-circle-outline.svg" alt="">
+            </div>
+            <div class="todo-button delete">
+              <img src="assets/images/trash-can-outline.svg" alt="">
+            </div>
+          </div>
+        </li>
+      </ul>
+      <li class="add-todo">
+        <img src="assets/images/plus-cropped.svg" alt="">
       </li>
-      <li class="todo">
-        <div class="todo-check">
-          <img class="unchecked" src="assets/images/circle-outline.svg" alt="">
-          <img class="checked" src="assets/images/check-circle.svg" alt="">
-        </div>
-        <h3 class="todo-title">Task2</h3>
-        <div class="todo-infos">
-          <div class="todo-info date">
-            <time datetime="2020-02-25">2020-02-25</time>
-          </div>
-          <div class="todo-info priority medium">
-            <img src="assets/images/flag-variant.svg" alt="">
-          </div>
-        </div>
-        <div class="todo-buttons">
-          <div class="todo-button edit">
-            <img src="assets/images/rename-outline.svg" alt="">
-          </div>
-          <div class="todo-button move">
-            <img src="assets/images/arrow-right-circle-outline.svg" alt="">
-          </div>
-          <div class="todo-button delete">
-            <img src="assets/images/trash-can-outline.svg" alt="">
-          </div>
-        </div>
-      </li>
-      <li class="todo complete">
-        <div class="todo-check">
-          <img class="unchecked" src="assets/images/circle-outline.svg" alt="">
-          <img class="checked" src="assets/images/check-circle.svg" alt="">
-        </div>
-        <h3 class="todo-title">Task3</h3>
-        <p class="todo-description">Something something</p>
-        <div class="todo-infos">
-          <div class="todo-info date">
-            <time datetime="">no date set</time>
-          </div>
-          <div class="todo-info priority low">
-            <img src="assets/images/flag-variant.svg" alt="">
-          </div>
-        </div>
-        <div class="todo-buttons">
-          <div class="todo-button edit">
-            <img src="assets/images/rename-outline.svg" alt="">
-          </div>
-          <div class="todo-button move">
-            <img src="assets/images/arrow-right-circle-outline.svg" alt="">
-          </div>
-          <div class="todo-button delete">
-            <img src="assets/images/trash-can-outline.svg" alt="">
-          </div>
-        </div>
-      </li>
-    </ul>
-    <li class="add-todo">
-      <img src="assets/images/plus-cropped.svg" alt="">
-    </li>
+    </div>
   </div>
   <dialog class="todo-dialog">
     <div>

@@ -13,9 +13,25 @@ html {
 
 body {
   height: 100%;
-  display: grid;
+  /* display: grid;
   grid-template-rows: auto 1fr;
-  grid-template-columns: max(300px, 20vw) 1fr;
+  grid-template-columns: max(300px, 20vw) 1fr; */
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  flex-basis: max(300px, 20vw);
+}
+
+.main {
+  flex-grow: 1;
 }
 
 /* HEADER */
@@ -68,6 +84,10 @@ body {
   gap: 20px;
   background-color:lightsteelblue;
   padding: 30px 20px;
+}
+
+.sidebar.hidden {
+  display: none;
 }
 
 .sidebar .title {
