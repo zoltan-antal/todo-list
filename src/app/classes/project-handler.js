@@ -30,10 +30,27 @@ export default class ProjectHandler {
     this.currentProjectIndex = index;
   }
 
+  getProjectById(id) {
+    for (const project of this.projectList) {
+      if (project.id === id) {
+        return project;
+      }
+    }
+  }
+
   renameProjectById(id, newName) {
-    this.projectList.forEach(project => {
+    for (const project of this.projectList) {
       if (project.id === id) {
         project.changeName(newName);
+        return;
+      }
+    }
+  }
+
+  addTodo ({todo, projectId = this.projectList[this.currentProjectIndex].id}) {
+    this.projectList.forEach(project => {
+      if (project.id === projectId) {
+        project.addTodo(todo);
       }
     })
   }

@@ -4,9 +4,11 @@ import trashCanOutlineImage from "../../assets/images/trash-can-outline.svg";
 import checkImage from "../../assets/images/check.svg";
 import closeImage from "../../assets/images/close.svg";
 import Project from "../classes/project";
+import loadTodos from "./handle-todo-list";
 
 const projectListElement = document.querySelector(".sidebar .project-list");
 const addProjectElement = document.querySelector(".sidebar .add-project");
+const todoTitleElement = document.querySelector(".main .title");
 
 export default function loadProjects() {
   // Clear project list
@@ -74,6 +76,10 @@ function selectProject(projectElement) {
   // Marking project as selected and adding buttons
   projectElement.classList.add("selected");
   addProjectSelectButtons(projectElement);
+
+  // Displaying Todo list
+  todoTitleElement.textContent = projectHandler.getProjectById(Number(projectElement.getAttribute("project-id"))).name;
+  loadTodos();
 }
 
 function unselectProjects() {
