@@ -8,7 +8,6 @@ export const projectHandler = new ProjectHandler;
 
 export default function main() {
   initializePage();
-  demo();
   loadTodos();
   loadProjects();
 }

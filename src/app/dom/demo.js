@@ -1,10 +1,17 @@
 import { projectHandler } from "../app";
+import { defaultProjectName } from "../classes/project-handler";
 import Project from "../classes/project";
 import Todo from "../classes/todo";
+import loadProjects from "./handle-project-list";
+import loadTodos from "./handle-todo-list";
 
 export default function demo() {
-  projectHandler.addProject(new Project("Project A"));
-  projectHandler.addProject(new Project("Project B"));
+  resetProjectHandler();
+
+  const projectA = new Project("Project A");
+  const projectB = new Project("Project B");
+  projectHandler.addProject(projectA);
+  projectHandler.addProject(projectB);
 
   projectHandler.addTodo({todo: new Todo({
     title: "Task1",
@@ -22,5 +29,14 @@ export default function demo() {
     title: "Task2",
     dueDate: new Date(2020, 1, 25),
     priority: "medium",
-  }), projectId: 1});
+  }), projectId: projectA.id});
+
+  loadProjects();
+  loadTodos();
+}
+
+function resetProjectHandler() {
+  projectHandler.projectList = [];
+  projectHandler.addProject(new Project(defaultProjectName));
+  projectHandler.currentProjectIndex = 0;
 }

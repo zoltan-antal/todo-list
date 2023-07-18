@@ -1,6 +1,6 @@
 import Project from "./project";
 
-const defaultProjectName = "Default";
+export const defaultProjectName = "Default";
 
 export default class ProjectHandler {
 

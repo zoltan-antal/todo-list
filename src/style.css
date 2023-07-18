@@ -76,6 +76,27 @@ body {
   color: white;
 }
 
+.header-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+
+.header-buttons button {
+  font-size: 1.25rem;
+  padding: 8px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.header-buttons button:hover {
+  background-color: rgb(223, 223, 223);
+}
+
 /* SIDEBAR */
 
 .sidebar {
