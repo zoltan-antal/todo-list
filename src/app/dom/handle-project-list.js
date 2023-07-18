@@ -46,22 +46,12 @@ function addProject({project, toSelect = false}) {
   }
 }
 
-function addProjectSelectEvent(projectElement) {
-  projectElement.addEventListener("click", (e) => {
-    let projectElement = e.target;
-
-    // Exiting if a project button was pressed
-    if (projectElement.classList.contains("project-button") || projectElement.tagName == "IMG") {
+function removeProject(projectId) {
+  projectListElement.childNodes.forEach(projectElement => {
+    if (Number(projectElement.getAttribute("project-id")) === projectId) {
+      projectElement.remove();
       return;
     }
-
-    // Getting the correct project target element (in case title is clicked)
-    while (!projectElement.classList.contains("project")) {
-      projectElement = projectElement.parentElement;
-    }
-
-    projectHandler.changeCurrentProject(Number(projectElement.getAttribute("project-id")));
-    selectProject(projectElement);
   });
 }
 
@@ -140,6 +130,41 @@ function addProjectEditButtons(projectElement) {
   projectElement.appendChild(projectButtonsElement);
 }
 
+function removeProjectButtons(projectElement) {
+  projectElement.childNodes.forEach(element => {
+    if (element.classList.contains("project-buttons")) {
+      element.remove();
+    }
+  });
+}
+
+function addProjectTitleInput({projectElement, value = ""}) {
+  const projectTitleInputElement = document.createElement("input");
+  projectTitleInputElement.value = value;
+  projectTitleInputElement.type = "text";
+  projectTitleInputElement.classList.add("project-title-input");
+  projectElement.appendChild(projectTitleInputElement);
+}
+
+function addProjectSelectEvent(projectElement) {
+  projectElement.addEventListener("click", (e) => {
+    let projectElement = e.target;
+
+    // Exiting if a project button was pressed
+    if (projectElement.classList.contains("project-button") || projectElement.tagName == "IMG") {
+      return;
+    }
+
+    // Getting the correct project target element (in case title is clicked)
+    while (!projectElement.classList.contains("project")) {
+      projectElement = projectElement.parentElement;
+    }
+
+    projectHandler.changeCurrentProject(Number(projectElement.getAttribute("project-id")));
+    selectProject(projectElement);
+  });
+}
+
 function addProjectDeleteEvent(projectButtonElement) {
   projectButtonElement.addEventListener("click", (e) => {
     // Getting the correct project target element
@@ -204,24 +229,6 @@ function addProjectConfirmEvent(projectButtonElement) {
   });
 }
 
-function removeProject(projectId) {
-  projectListElement.childNodes.forEach(projectElement => {
-    if (Number(projectElement.getAttribute("project-id")) === projectId) {
-      projectElement.remove();
-      return;
-    }
-  });
-}
-
-function removeProjectButtons(projectElement) {
-  console.log("removeProjectButtons()");
-  projectElement.childNodes.forEach(element => {
-    if (element.classList.contains("project-buttons")) {
-      element.remove();
-    }
-  });
-}
-
 function addProjectRenameEvent(projectButtonElement) {
   projectButtonElement.addEventListener("click", (e) => {
     // Getting the correct project target element
@@ -256,19 +263,9 @@ function addProjectRenameEvent(projectButtonElement) {
   });
 }
 
-function addProjectTitleInput({projectElement, value = ""}) {
-  console.log("addProjectTitleInput()");
-  const projectTitleInputElement = document.createElement("input");
-  projectTitleInputElement.value = value;
-  projectTitleInputElement.type = "text";
-  projectTitleInputElement.classList.add("project-title-input");
-  projectElement.appendChild(projectTitleInputElement);
-}
-
 function removeProjectEvents({projectElementSkip = undefined}) {
-  console.log("removeProjectEvents()");
   projectListElement.childNodes.forEach(projectElement => {
-    if (!projectElementSkip.isEqualNode(projectElement)) {
+    if (projectElementSkip && !projectElementSkip.isEqualNode(projectElement)) {
       const projectElementClone = projectElement.cloneNode(true);
       projectElement.parentNode.replaceChild(projectElementClone, projectElement);
     }
