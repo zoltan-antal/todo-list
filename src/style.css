@@ -210,12 +210,24 @@ body {
   cursor: pointer;
 }
 
-.todo-check.checked img {
+.todo-check img.checked {
   filter: invert(30%) sepia(60%) saturate(1731%) hue-rotate(90deg) brightness(96%) contrast(104%);
 }
 
-.todo-check.checked ~ .todo-title,
-.todo-check.checked ~ .todo-description {
+.todo:not(.complete) .checked {
+  display: none;
+}
+
+.todo.complete .unchecked {
+  display: none;
+}
+
+.todo-check img.unchecked:hover {
+  filter: invert(51%) sepia(2%) saturate(0%) hue-rotate(286deg) brightness(98%) contrast(93%);
+}
+
+.todo.complete .todo-title,
+.todo.complete .todo-description {
   text-decoration: line-through;
 }
 
