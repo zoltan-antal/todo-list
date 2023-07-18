@@ -38,11 +38,14 @@ function addProject({project, toSelect = false}) {
   const projectElement = document.createElement("li");
   projectElement.classList.add("project");
   projectElement.setAttribute("project-id", project.id);
+
   const projectTitleElement = document.createElement("h3");
   projectTitleElement.classList.add("project-title");
   projectTitleElement.textContent = project.name;
-  addProjectSelectEvent(projectElement);
   projectElement.appendChild(projectTitleElement);
+  
+  addProjectSelectEvent(projectElement);
+  
   projectListElement.appendChild(projectElement);
 
   if (toSelect) {
@@ -169,6 +172,40 @@ function addProjectSelectEvent(projectElement) {
   });
 }
 
+function addProjectRenameEvent(projectButtonElement) {
+  projectButtonElement.addEventListener("click", (e) => {
+    // Getting the correct project target element
+    let projectElement = e.target;
+    while (!projectElement.classList.contains("project")) {
+      projectElement = projectElement.parentElement;
+    }
+
+    // Removing event listeners from all other projects to deactivate them
+    removeProjectEvents({projectElementSkip: projectElement});
+
+    // Removing project select buttons
+    removeProjectButtons(projectElement);
+
+    // Marking project as being edited
+    projectElement.classList.add("edit");
+
+    // Extracting the project title, then removing title element
+    let projectTitle;
+    projectElement.childNodes.forEach(element => {
+      if (element.classList.contains("project-title")) {
+        projectTitle = element.textContent;
+        element.remove();
+      }
+    });
+
+    // Adding project title input element
+    addProjectTitleInput({projectElement, value: projectTitle});
+
+    // Adding edit buttons
+    addProjectEditButtons(projectElement);
+  });
+}
+
 function addProjectDeleteEvent(projectButtonElement) {
   projectButtonElement.addEventListener("click", (e) => {
     // Getting the correct project target element
@@ -230,40 +267,6 @@ function addProjectConfirmEvent(projectButtonElement) {
     
     // Re-loading project list
     loadProjects();
-  });
-}
-
-function addProjectRenameEvent(projectButtonElement) {
-  projectButtonElement.addEventListener("click", (e) => {
-    // Getting the correct project target element
-    let projectElement = e.target;
-    while (!projectElement.classList.contains("project")) {
-      projectElement = projectElement.parentElement;
-    }
-
-    // Removing event listeners from all other projects to deactivate them
-    removeProjectEvents({projectElementSkip: projectElement});
-
-    // Removing project select buttons
-    removeProjectButtons(projectElement);
-
-    // Marking project as being edited
-    projectElement.classList.add("edit");
-
-    // Extracting the project title, then removing title element
-    let projectTitle;
-    projectElement.childNodes.forEach(element => {
-      if (element.classList.contains("project-title")) {
-        projectTitle = element.textContent;
-        element.remove();
-      }
-    });
-
-    // Adding project title input element
-    addProjectTitleInput({projectElement, value: projectTitle});
-
-    // Adding edit buttons
-    addProjectEditButtons(projectElement);
   });
 }
 
