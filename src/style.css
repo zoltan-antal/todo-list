@@ -13,9 +13,6 @@ html {
 
 body {
   height: 100%;
-  /* display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-columns: max(300px, 20vw) 1fr; */
   display: flex;
   flex-direction: column;
 }
@@ -27,7 +24,9 @@ body {
 }
 
 .sidebar {
-  flex-basis: max(300px, 20vw);
+  width: max(300px, 20vw);
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .main {
