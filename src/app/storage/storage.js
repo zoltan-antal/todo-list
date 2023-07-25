@@ -40,12 +40,8 @@ export function retrieveProjectHandler() {
   projectHandler.currentProjectIndex = 0;
 
   // Restore class static variables
-  Project.nextId = localStorage.getItem("projectNextId");
-  Todo.nextId = localStorage.getItem("todoNextId");
-
-  console.log(Project.nextId);
-  console.log(Todo.nextId);
-  console.log(projectHandler);
+  Project.nextId = Number(localStorage.getItem("projectNextId"));
+  Todo.nextId = Number(localStorage.getItem("todoNextId"));
 
   return projectHandler;
 }

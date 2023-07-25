@@ -221,9 +221,14 @@ function addProjectDeleteEvent(projectButtonElement) {
       projectElement = projectElement.parentElement;
     }
 
+    // Prevent removing all projects
+    if (projectHandler.projectList.length === 1) {
+      return;
+    }
+
     // Getting project ID
     const projectId = Number(projectElement.getAttribute("project-id"));
-    
+
     // Removing project from data
     projectHandler.removeProject(projectId);
 
