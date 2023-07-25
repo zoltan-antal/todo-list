@@ -6,6 +6,7 @@ import renameOutlineImage from "../../assets/images/rename-outline.svg";
 import trashCanOutlineImage from "../../assets/images/trash-can-outline.svg";
 import { format } from "date-fns";
 import Todo from "../classes/todo";
+import { storeProjectHandler } from "../storage/storage";
 
 const todoListElement = document.querySelector(".main .todo-list");
 const todoDialog = document.querySelector(".todo-dialog");
@@ -121,6 +122,9 @@ function removeTodo(todoId) {
       return;
     }
   }
+
+  // Update stored project handler
+  storeProjectHandler();
 }
 
 function addTodoCheckEvent(todoCheckElement) {
@@ -231,6 +235,9 @@ function createNewTodo() {
   const todo = new Todo({title, description, dueDate, priority});
   projectHandler.getCurrentProject().addTodo(todo);
 
+  // Update stored project handler
+  storeProjectHandler();
+
   // Closing and resetting dialog
   todoDialog.close();
   resetTodoDialog();
@@ -260,6 +267,9 @@ function editTodo(todoElement) {
   todo.description = description;
   todo.dueDate = dueDate;
   todo.priority = priority;
+
+  // Update stored project handler
+  storeProjectHandler();
 
   // Closing and resetting dialog
   todoDialog.close();

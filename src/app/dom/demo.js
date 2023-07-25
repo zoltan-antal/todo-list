@@ -4,6 +4,7 @@ import Project from "../classes/project";
 import Todo from "../classes/todo";
 import loadProjects from "./handle-project-list";
 import loadTodos from "./handle-todo-list";
+import { storeProjectHandler } from "../storage/storage";
 
 export default function demo() {
   resetProjectHandler();
@@ -33,6 +34,9 @@ export default function demo() {
 
   loadProjects();
   loadTodos();
+  console.log(projectHandler);
+
+  storeProjectHandler();
 }
 
 function resetProjectHandler() {

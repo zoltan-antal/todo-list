@@ -5,6 +5,7 @@ import checkImage from "../../assets/images/check.svg";
 import closeImage from "../../assets/images/close.svg";
 import Project from "../classes/project";
 import loadTodos from "./handle-todo-list";
+import { storeProjectHandler } from "../storage/storage";
 
 const projectListElement = document.querySelector(".sidebar .project-list");
 const addProjectElement = document.querySelector(".sidebar .add-project");
@@ -226,6 +227,9 @@ function addProjectDeleteEvent(projectButtonElement) {
     // Removing project from data
     projectHandler.removeProject(projectId);
 
+    // Update stored project handler
+    storeProjectHandler();
+
     // Removing project from DOM
     removeProject(projectId);
 
@@ -270,6 +274,9 @@ function addProjectConfirmEvent(projectButtonElement) {
         addProject({project: newProject, toSelect: true});
       }
     }
+
+    // Update stored project handler
+    storeProjectHandler();
     
     // Re-loading project list
     loadProjects();
